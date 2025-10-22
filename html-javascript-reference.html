@@ -1,0 +1,873 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML & JavaScript Reference Guide</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+
+        header {
+            background: linear-gradient(135deg, #2F5496 0%, #4472C4 100%);
+            color: white;
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+        header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        header p {
+            font-size: 1.2em;
+            font-style: italic;
+            opacity: 0.9;
+        }
+
+        nav {
+            background: #f8f9fa;
+            padding: 20px;
+            border-bottom: 3px solid #2F5496;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav h3 {
+            color: #2F5496;
+            margin-bottom: 15px;
+            font-size: 1.2em;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #2F5496;
+            padding: 8px 15px;
+            background: white;
+            border-radius: 5px;
+            border: 2px solid #2F5496;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        nav a:hover {
+            background: #2F5496;
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+
+        main {
+            padding: 40px;
+        }
+
+        .section {
+            margin-bottom: 50px;
+            scroll-margin-top: 100px;
+        }
+
+        h2 {
+            color: #2F5496;
+            font-size: 2em;
+            margin-bottom: 30px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #2F5496;
+        }
+
+        h3 {
+            color: #2F5496;
+            font-size: 1.5em;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+
+        h4 {
+            color: #555;
+            font-size: 1.2em;
+            margin-top: 20px;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .code-example {
+            background: #f5f5f5;
+            border-left: 4px solid #4472C4;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+
+        .code-example code {
+            font-family: 'Courier New', monospace;
+            font-size: 0.95em;
+            color: #d63384;
+            display: block;
+            white-space: pre;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        thead {
+            background: #4472C4;
+            color: white;
+        }
+
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+
+        th {
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.9em;
+            letter-spacing: 0.5px;
+        }
+
+        tbody tr:nth-child(even) {
+            background: #f8f9fa;
+        }
+
+        tbody tr:hover {
+            background: #e9ecef;
+            transition: background 0.3s ease;
+        }
+
+        td:first-child {
+            font-weight: 600;
+            color: #2F5496;
+        }
+
+        ul.feature-list {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        ul.feature-list li {
+            padding: 10px 0;
+            padding-left: 30px;
+            position: relative;
+        }
+
+        ul.feature-list li:before {
+            content: "▸";
+            position: absolute;
+            left: 10px;
+            color: #4472C4;
+            font-weight: bold;
+        }
+
+        .highlight {
+            background: #fff3cd;
+            padding: 2px 5px;
+            border-radius: 3px;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 3px 8px;
+            background: #dc3545;
+            color: white;
+            border-radius: 3px;
+            font-size: 0.8em;
+            font-weight: 600;
+            margin-left: 5px;
+        }
+
+        footer {
+            background: #2F5496;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 1.8em;
+            }
+
+            nav ul {
+                flex-direction: column;
+            }
+
+            main {
+                padding: 20px;
+            }
+
+            table {
+                font-size: 0.9em;
+            }
+        }
+
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #2F5496;
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            transition: all 0.3s ease;
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .back-to-top:hover {
+            background: #4472C4;
+            transform: translateY(-5px);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>HTML & JavaScript Reference Guide</h1>
+            <p>Complete Syntax & Attributes Reference</p>
+        </header>
+
+        <nav>
+            <h3>Quick Navigation</h3>
+            <ul>
+                <li><a href="#html-elements">HTML Elements</a></li>
+                <li><a href="#h1">H1</a></li>
+                <li><a href="#p">P</a></li>
+                <li><a href="#div">Div</a></li>
+                <li><a href="#table">Table</a></li>
+                <li><a href="#a">A (Link)</a></li>
+                <li><a href="#img">Img</a></li>
+                <li><a href="#form">Form</a></li>
+                <li><a href="#input">Input</a></li>
+                <li><a href="#select">Select</a></li>
+                <li><a href="#button">Button</a></li>
+                <li><a href="#javascript">JavaScript</a></li>
+                <li><a href="#arrays">Arrays</a></li>
+                <li><a href="#loops">Loops</a></li>
+                <li><a href="#conditions">Conditions</a></li>
+                <li><a href="#functions">Functions</a></li>
+                <li><a href="#class">Class</a></li>
+                <li><a href="#objects">Objects</a></li>
+            </ul>
+        </nav>
+
+        <main>
+            <!-- HTML ELEMENTS SECTION -->
+            <section id="html-elements" class="section">
+                <h2>HTML Elements</h2>
+
+                <!-- H1 -->
+                <div id="h1" class="section">
+                    <h3>1. H1 (Heading)</h3>
+                    <h4>Correct Syntax:</h4>
+                    <div class="code-example">
+                        <code>&lt;h1 id="main-title" class="header" title="Page Title"&gt;Welcome to My Website&lt;/h1&gt;</code>
+                    </div>
+                    <h4>Most Popular Attributes:</h4>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Attribute</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>id</td>
+                                <td>Unique identifier for the element</td>
+                            </tr>
+                            <tr>
+                                <td>class</td>
+                                <td>CSS class name(s) for styling</td>
+                            </tr>
+                            <tr>
+                                <td>style</td>
+                                <td>Inline CSS styles</td>
+                            </tr>
+                            <tr>
+                                <td>title</td>
+                                <td>Additional information (tooltip)</td>
+                            </tr>
+                            <tr>
+                                <td>contenteditable</td>
+                                <td>Makes content editable (true/false)</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- P -->
+                <div id="p" class="section">
+                    <h3>2. P (Paragraph)</h3>
+                    <h4>Correct Syntax:</h4>
+                    <div class="code-example">
+                        <code>&lt;p id="intro" class="text-content" style="color: blue;"&gt;This is a paragraph.&lt;/p&gt;</code>
+                    </div>
+                    <h4>Most Popular Attributes:</h4>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Attribute</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>id</td>
+                                <td>Unique identifier</td>
+                            </tr>
+                            <tr>
+                                <td>class</td>
+                                <td>CSS class name(s)</td>
+                            </tr>
+                            <tr>
+                                <td>style</td>
+                                <td>Inline CSS styles</td>
+                            </tr>
+                            <tr>
+                                <td>contenteditable</td>
+                                <td>Makes content editable</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Div -->
+                <div id="div" class="section">
+                    <h3>3. Div (Container)</h3>
+                    <h4>Correct Syntax:</h4>
+                    <div class="code-example">
+                        <code>&lt;div id="container" class="wrapper" data-user="123"&gt;
+    &lt;p&gt;Content goes here&lt;/p&gt;
+&lt;/div&gt;</code>
+                    </div>
+                    <h4>Most Popular Attributes:</h4>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Attribute</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>id</td>
+                                <td>Unique identifier</td>
+                            </tr>
+                            <tr>
+                                <td>class</td>
+                                <td>CSS class name(s)</td>
+                            </tr>
+                            <tr>
+                                <td>data-*</td>
+                                <td>Custom data attributes (data-name="value")</td>
+                            </tr>
+                            <tr>
+                                <td>role</td>
+                                <td>ARIA role for accessibility</td>
+                            </tr>
+                            <tr>
+                                <td>draggable</td>
+                                <td>Enables drag functionality</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Table -->
+                <div id="table" class="section">
+                    <h3>4. Table</h3>
+                    <h4>Correct Syntax:</h4>
+                    <div class="code-example">
+                        <code>&lt;table id="data-table" class="styled-table"&gt;
+    &lt;thead&gt;
+        &lt;tr&gt;&lt;th scope="col"&gt;Name&lt;/th&gt;&lt;th&gt;Age&lt;/th&gt;&lt;/tr&gt;
+    &lt;/thead&gt;
+    &lt;tbody&gt;
+        &lt;tr&gt;&lt;td&gt;John&lt;/td&gt;&lt;td&gt;25&lt;/td&gt;&lt;/tr&gt;
+    &lt;/tbody&gt;
+&lt;/table&gt;</code>
+                    </div>
+                    <h4>Related Elements & Attributes:</h4>
+                    <ul class="feature-list">
+                        <li><strong>&lt;thead&gt;</strong> - Table header section</li>
+                        <li><strong>&lt;tbody&gt;</strong> - Table body section</li>
+                        <li><strong>&lt;tr&gt;</strong> - Table row</li>
+                        <li><strong>&lt;th&gt;</strong> - Header cell (scope, colspan, rowspan)</li>
+                        <li><strong>&lt;td&gt;</strong> - Data cell (colspan, rowspan)</li>
+                    </ul>
+                </div>
+
+                <!-- A (Anchor) -->
+                <div id="a" class="section">
+                    <h3>5. A (Anchor/Link)</h3>
+                    <h4>Correct Syntax:</h4>
+                    <div class="code-example">
+                        <code>&lt;a href="https://example.com" target="_blank" rel="noopener"&gt;Visit Site&lt;/a&gt;</code>
+                    </div>
+                    <h4>Most Popular Attributes:</h4>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Attribute</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>href <span class="badge">REQUIRED</span></td>
+                                <td>URL destination</td>
+                            </tr>
+                            <tr>
+                                <td>target</td>
+                                <td>_blank (new tab), _self (same window)</td>
+                            </tr>
+                            <tr>
+                                <td>rel</td>
+                                <td>noopener (security), noreferrer, nofollow</td>
+                            </tr>
+                            <tr>
+                                <td>download</td>
+                                <td>Download file instead of navigate</td>
+                            </tr>
+                            <tr>
+                                <td>title</td>
+                                <td>Link description/tooltip</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Img -->
+                <div id="img" class="section">
+                    <h3>6. Img (Image)</h3>
+                    <h4>Correct Syntax:</h4>
+                    <div class="code-example">
+                        <code>&lt;img src="logo.png" alt="Company Logo" width="200" height="100" loading="lazy"&gt;</code>
+                    </div>
+                    <h4>Most Popular Attributes:</h4>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Attribute</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>src <span class="badge">REQUIRED</span></td>
+                                <td>Image source URL</td>
+                            </tr>
+                            <tr>
+                                <td>alt <span class="badge">REQUIRED</span></td>
+                                <td>Alternative text for accessibility</td>
+                            </tr>
+                            <tr>
+                                <td>width / height</td>
+                                <td>Image dimensions in pixels</td>
+                            </tr>
+                            <tr>
+                                <td>loading</td>
+                                <td>lazy (load when visible), eager (load immediately)</td>
+                            </tr>
+                            <tr>
+                                <td>srcset</td>
+                                <td>Responsive image sources</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Form -->
+                <div id="form" class="section">
+                    <h3>7. Form</h3>
+                    <h4>Correct Syntax:</h4>
+                    <div class="code-example">
+                        <code>&lt;form action="/submit" method="POST" enctype="multipart/form-data"&gt;
+    &lt;input type="text" name="username"&gt;
+    &lt;button type="submit"&gt;Submit&lt;/button&gt;
+&lt;/form&gt;</code>
+                    </div>
+                    <h4>Most Popular Attributes:</h4>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Attribute</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>action</td>
+                                <td>URL to submit form data</td>
+                            </tr>
+                            <tr>
+                                <td>method</td>
+                                <td>GET (URL params) or POST (request body)</td>
+                            </tr>
+                            <tr>
+                                <td>enctype</td>
+                                <td>multipart/form-data (for file uploads)</td>
+                            </tr>
+                            <tr>
+                                <td>autocomplete</td>
+                                <td>Enable autocomplete (on, off)</td>
+                            </tr>
+                            <tr>
+                                <td>novalidate</td>
+                                <td>Disable validation</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Input -->
+                <div id="input" class="section">
+                    <h3>8. Input</h3>
+                    <h4>Correct Syntax Examples:</h4>
+                    <div class="code-example">
+                        <code>&lt;input type="text" name="username" placeholder="Enter name" required&gt;
+&lt;input type="email" name="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"&gt;
+&lt;input type="checkbox" name="agree" checked&gt;
+&lt;input type="file" name="upload" accept=".pdf,.doc"&gt;</code>
+                    </div>
+                    <h4>Most Popular Attributes:</h4>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Attribute</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>type</td>
+                                <td>text, password, email, number, checkbox, radio, file, date, etc.</td>
+                            </tr>
+                            <tr>
+                                <td>name</td>
+                                <td>Input name for form submission</td>
+                            </tr>
+                            <tr>
+                                <td>value</td>
+                                <td>Input value</td>
+                            </tr>
+                            <tr>
+                                <td>placeholder</td>
+                                <td>Hint text shown when empty</td>
+                            </tr>
+                            <tr>
+                                <td>required</td>
+                                <td>Makes field mandatory (boolean)</td>
+                            </tr>
+                            <tr>
+                                <td>disabled</td>
+                                <td>Disables the input</td>
+                            </tr>
+                            <tr>
+                                <td>maxlength</td>
+                                <td>Maximum character length</td>
+                            </tr>
+                            <tr>
+                                <td>pattern</td>
+                                <td>Regular expression for validation</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Select -->
+                <div id="select" class="section">
+                    <h3>9. Select (Dropdown)</h3>
+                    <h4>Correct Syntax:</h4>
+                    <div class="code-example">
+                        <code>&lt;select name="country" required&gt;
+    &lt;option value=""&gt;Choose...&lt;/option&gt;
+    &lt;option value="us" selected&gt;United States&lt;/option&gt;
+    &lt;option value="uk"&gt;United Kingdom&lt;/option&gt;
+&lt;/select&gt;</code>
+                    </div>
+                    <h4>Most Popular Attributes:</h4>
+                    <ul class="feature-list">
+                        <li><strong>name</strong> - Name for form submission</li>
+                        <li><strong>required</strong> - Makes selection mandatory</li>
+                        <li><strong>multiple</strong> - Allow multiple selections</li>
+                        <li><strong>Related:</strong> &lt;option&gt; (value, selected, disabled)</li>
+                    </ul>
+                </div>
+
+                <!-- Button -->
+                <div id="button" class="section">
+                    <h3>10. Button</h3>
+                    <h4>Correct Syntax:</h4>
+                    <div class="code-example">
+                        <code>&lt;button type="submit" name="action" value="save"&gt;Save&lt;/button&gt;</code>
+                    </div>
+                    <h4>Most Popular Attributes:</h4>
+                    <ul class="feature-list">
+                        <li><strong>type</strong> - button (default), submit, reset</li>
+                        <li><strong>disabled</strong> - Disables the button</li>
+                        <li><strong>onclick</strong> - JavaScript click handler</li>
+                        <li><strong>name / value</strong> - For form submission</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- JAVASCRIPT SECTION -->
+            <section id="javascript" class="section">
+                <h2>JavaScript Concepts</h2>
+
+                <!-- Arrays -->
+                <div id="arrays" class="section">
+                    <h3>11. Arrays</h3>
+                    <h4>Correct Syntax:</h4>
+                    <div class="code-example">
+                        <code>const arr = [1, 2, 3, 4, 5];
+arr.push(6);              // [1,2,3,4,5,6]
+arr.pop();                // [1,2,3,4,5]
+arr.map(x => x * 2);      // [2,4,6,8,10]
+arr.filter(x => x > 3);   // [4,5]</code>
+                    </div>
+                    <h4>Most Popular Methods:</h4>
+                    <ul class="feature-list">
+                        <li><strong>push(), pop()</strong> - Add/remove from end</li>
+                        <li><strong>shift(), unshift()</strong> - Add/remove from beginning</li>
+                        <li><strong>map()</strong> - Transform each element</li>
+                        <li><strong>filter()</strong> - Select elements by condition</li>
+                        <li><strong>reduce()</strong> - Reduce to single value</li>
+                        <li><strong>forEach()</strong> - Execute function for each element</li>
+                        <li><strong>find(), includes()</strong> - Search elements</li>
+                        <li><strong>sort(), reverse()</strong> - Reorder elements</li>
+                        <li><strong>concat(), join()</strong> - Combine/convert arrays</li>
+                    </ul>
+                </div>
+
+                <!-- Loops -->
+                <div id="loops" class="section">
+                    <h3>12. Loops</h3>
+                    <h4>Correct Syntax:</h4>
+                    <div class="code-example">
+                        <code>// For loop
+for (let i = 0; i < 5; i++) {
+    console.log(i);
+}
+
+// For...of loop
+for (let item of array) {
+    console.log(item);
+}
+
+// While loop
+while (condition) {
+    // code
+}</code>
+                    </div>
+                    <h4>Loop Types:</h4>
+                    <ul class="feature-list">
+                        <li><strong>for</strong> - Traditional counter loop</li>
+                        <li><strong>for...of</strong> - Iterate array values</li>
+                        <li><strong>for...in</strong> - Iterate object keys</li>
+                        <li><strong>while</strong> - Loop while condition is true</li>
+                        <li><strong>do...while</strong> - Execute at least once</li>
+                        <li><strong>break, continue</strong> - Loop control statements</li>
+                    </ul>
+                </div>
+
+                <!-- Conditions -->
+                <div id="conditions" class="section">
+                    <h3>13. Conditions</h3>
+                    <h4>Correct Syntax:</h4>
+                    <div class="code-example">
+                        <code>if (age >= 18) {
+    console.log("Adult");
+} else if (age >= 13) {
+    console.log("Teen");
+} else {
+    console.log("Child");
+}
+
+// Ternary operator
+const result = age >= 18 ? "Adult" : "Minor";</code>
+                    </div>
+                    <h4>Operators:</h4>
+                    <ul class="feature-list">
+                        <li><strong>===, !==</strong> - Strict equality/inequality</li>
+                        <li><strong>&gt;, &lt;, &gt;=, &lt;=</strong> - Comparison operators</li>
+                        <li><strong>&amp;&amp;, ||, !</strong> - Logical AND, OR, NOT</li>
+                        <li><strong>??</strong> - Nullish coalescing operator</li>
+                    </ul>
+                </div>
+
+                <!-- Functions -->
+                <div id="functions" class="section">
+                    <h3>14. Functions</h3>
+                    <h4>Correct Syntax:</h4>
+                    <div class="code-example">
+                        <code>// Function declaration
+function greet(name) {
+    return "Hello " + name;
+}
+
+// Arrow function
+const greet = (name) => "Hello " + name;
+
+// Function with default parameters
+function greet(name = "Guest") {
+    return "Hello " + name;
+}</code>
+                    </div>
+                    <h4>Key Concepts:</h4>
+                    <ul class="feature-list">
+                        <li><strong>Function declaration</strong> - function name() {}</li>
+                        <li><strong>Arrow function</strong> - const name = () => {}</li>
+                        <li><strong>Parameters & return</strong> - Input and output values</li>
+                        <li><strong>Default parameters</strong> - Fallback values</li>
+                        <li><strong>Callback functions</strong> - Functions as arguments</li>
+                        <li><strong>Closure</strong> - Access to outer scope</li>
+                    </ul>
+                </div>
+
+                <!-- Class -->
+                <div id="class" class="section">
+                    <h3>15. Class</h3>
+                    <h4>Correct Syntax:</h4>
+                    <div class="code-example">
+                        <code>class Person {
+    constructor(name, age) {
+        this.name = name;
+        this.age = age;
+    }
+    
+    greet() {
+        return `Hi, I'm ${this.name}`;
+    }
+}
+
+const person = new Person("John", 25);</code>
+                    </div>
+                    <h4>Key Components:</h4>
+                    <ul class="feature-list">
+                        <li><strong>constructor</strong> - Initialization method</li>
+                        <li><strong>this</strong> - Refers to current instance</li>
+                        <li><strong>Methods</strong> - Instance methods</li>
+                        <li><strong>Static methods</strong> - Called on class itself</li>
+                        <li><strong>extends</strong> - Inheritance from parent class</li>
+                        <li><strong>super</strong> - Call parent constructor/methods</li>
+                    </ul>
+                </div>
+
+                <!-- Objects -->
+                <div id="objects" class="section">
+                    <h3>16. Objects</h3>
+                    <h4>Correct Syntax:</h4>
+                    <div class="code-example">
+                        <code>const person = {
+    name: "John",
+    age: 25,
+    greet() { return "Hello"; }
+};
+
+person.name              // Dot notation
+person["name"]           // Bracket notation
+Object.keys(person)      // ["name", "age", "greet"]</code>
+                    </div>
+                    <h4>Most Popular Methods:</h4>
+                    <ul class="feature-list">
+                        <li><strong>Object.keys()</strong> - Get property names</li>
+                        <li><strong>Object.values()</strong> - Get property values</li>
+                        <li><strong>Object.entries()</strong> - Get [key, value] pairs</li>
+                        <li><strong>Object.assign()</strong> - Copy properties</li>
+                        <li><strong>Object.freeze()</strong> - Prevent modifications</li>
+                        <li><strong>Object.hasOwn()</strong> - Check property existence</li>
+                    </ul>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <p>&copy; 2024 HTML & JavaScript Reference Guide | Created for Learning & Reference</p>
+        </footer>
+    </div>
+
+    <div class="back-to-top" id="backToTop" title="Back to Top">↑</div>
+
+    <script>
+        // Back to top button functionality
+        const backToTop = document.getElementById('backToTop');
+        
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTop.classList.add('visible');
+            } else {
+                backToTop.classList.remove('visible');
+            }
+        });
+
+        backToTop.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('nav a').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                target.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
